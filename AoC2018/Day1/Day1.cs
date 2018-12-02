@@ -35,14 +35,14 @@ namespace AoC2018.Day1
 
         public void CalculateResult2()
         {
-            while (this.duplicate_frequency_found == false)
+            while (!this.duplicate_frequency_found)
             {
                 for (int i = 0; i < this.input.Count; i++)
                 {
                     this.ModifyFrequency(this.input[i]);
                     for (int j = 0; j < this.list_of_frequencies.Count; j++)
                     {
-                        if ((this.list_of_frequencies[j] == this.frequency) && (this.duplicate_frequency_found is false))
+                        if ((this.list_of_frequencies[j] == this.frequency) && (!this.duplicate_frequency_found))
                         {
                             Console.WriteLine("FOUND DUPLICATE " + this.frequency.ToString());
                             this.duplicate_frequency_found = true;
