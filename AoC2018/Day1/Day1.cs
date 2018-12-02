@@ -26,6 +26,7 @@ namespace AoC2018.Day1
 
         public void CalculateResult1()
         {
+            this.frequency = 0;
             for(int i = 0; i < this.input.Count; i++)
             {
                 this.ModifyFrequency(this.input[i]);
@@ -35,6 +36,7 @@ namespace AoC2018.Day1
 
         public void CalculateResult2()
         {
+            this.frequency = 0;
             while (!this.duplicate_frequency_found)
             {
                 for (int i = 0; i < this.input.Count; i++)
