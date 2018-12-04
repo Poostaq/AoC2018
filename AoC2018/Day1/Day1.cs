@@ -21,7 +21,7 @@ namespace AoC2018.Day1
             {
                 this.frequency
             };
-            this.input = File.ReadAllLines("D://Projekty//AoC2018//AoC2018//Day1//Day1.txt").ToList();
+            this.input = File.ReadAllLines("D://Repos//AoC2018//AoC2018//Day1//Day1.txt").ToList();
         }
 
         public void CalculateResult1()
