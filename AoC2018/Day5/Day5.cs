@@ -19,14 +19,14 @@ namespace AoC2018.Day5
             Result.Append(input[0]);
             for(int i = 1; i < this.input.Length; i++)
             {
-                this.checkIfPolymer(i);
+                this.evaluatePolymer(i);
             }
 
             Console.WriteLine(Result.Length);
         }
 
 
-        private void checkIfPolymer(int currentIndex)
+        private void evaluatePolymer(int currentIndex)
         {
             if(Result.Length > 0)
             {
