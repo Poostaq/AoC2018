@@ -1,6 +1,7 @@
 ﻿using AoC2018.Day1;
 using AoC2018.Day2;
 using AoC2018.Day3;
+using AoC2018.Day5;
 using System;
 
 namespace AoC2018
@@ -19,9 +20,12 @@ namespace AoC2018
             //Console.ReadLine();
             //ResultDay2.CalculateResult2();
             //Console.ReadLine();
-            DayThree ResultDay3 = new DayThree();
+            //DayThree ResultDay3 = new DayThree();
             //ResultDay3.CalculateResult1();
-            ResultDay3.CalculateResult2();
+            //ResultDay3.CalculateResult2();
+            //Console.ReadLine();
+            DayFive ResultDay5 = new DayFive();
+            ResultDay5.CalculateResult1();
             Console.ReadLine();
         }
     }
