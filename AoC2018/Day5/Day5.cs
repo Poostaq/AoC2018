@@ -8,6 +8,7 @@ namespace AoC2018.Day5
 {
     class DayFive
     {
+        string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string input = "";
         string fullpolymer = "";
         StringBuilder Result = new StringBuilder();
@@ -17,7 +18,7 @@ namespace AoC2018.Day5
 
         public DayFive()
         {
-            this.input = File.ReadAllText("D://Repos//AoC2018//AoC2018//Day5//Day5.txt");
+            this.input = File.ReadAllText(path + "//Day5//Day5.txt");
         }
 
         public void CalculateResult1()
@@ -36,7 +37,6 @@ namespace AoC2018.Day5
             this.checkUsedUnits();
             for(int i = 0; i < this.listOfUsedUnits.Count; i++)
             {
-                inputWithoutUnit.Clear();
                 removeUnitFromPolymer(listOfUsedUnits[i]);
                 for (int j = 0; j < this.input.Length; j++)
                 {
@@ -45,8 +45,9 @@ namespace AoC2018.Day5
                 lengthsWithoutOneUnit.Add(Result.Length);
                 //Console.WriteLine(Result.Length);
                 this.input = this.fullpolymer;
+                this.inputWithoutUnit.Clear();
+                this.Result.Clear();
             }
-
             Console.WriteLine(lengthsWithoutOneUnit.Min());
         }
 

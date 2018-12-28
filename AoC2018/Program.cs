@@ -25,7 +25,7 @@ namespace AoC2018
             //ResultDay3.CalculateResult2();
             //Console.ReadLine();
             DayFive ResultDay5 = new DayFive();
-            //ResultDay5.CalculateResult1();
+            ResultDay5.CalculateResult1();
             ResultDay5.CalculateResult2();
             Console.ReadLine();
         }
