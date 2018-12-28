@@ -9,15 +9,20 @@ namespace AoC2018.Day5
     class DayFive
     {
         string input = "";
+        string fullpolymer = "";
         StringBuilder Result = new StringBuilder();
+        StringBuilder inputWithoutUnit = new StringBuilder();
+        List<char> listOfUsedUnits = new List<char>();
+        List<int> lengthsWithoutOneUnit = new List<int>();
+
         public DayFive()
         {
-            this.input = File.ReadAllText("D://Repos//AoC2018//AoC2018//Day5//Day5.txt");      }
+            this.input = File.ReadAllText("D://Repos//AoC2018//AoC2018//Day5//Day5.txt");
+        }
 
         public void CalculateResult1()
         {
-            Result.Append(input[0]);
-            for(int i = 1; i < this.input.Length; i++)
+            for (int i = 0; i < this.input.Length; i++)
             {
                 this.evaluatePolymer(i);
             }
@@ -25,46 +30,37 @@ namespace AoC2018.Day5
             Console.WriteLine(Result.Length);
         }
 
+        public void CalculateResult2()
+        {
+            this.fullpolymer = this.input;
+            this.checkUsedUnits();
+            for(int i = 0; i < this.listOfUsedUnits.Count; i++)
+            {
+                inputWithoutUnit.Clear();
+                removeUnitFromPolymer(listOfUsedUnits[i]);
+                for (int j = 0; j < this.input.Length; j++)
+                {
+                    this.evaluatePolymer(j);
+                }
+                lengthsWithoutOneUnit.Add(Result.Length);
+                //Console.WriteLine(Result.Length);
+                this.input = this.fullpolymer;
+            }
+
+            Console.WriteLine(lengthsWithoutOneUnit.Min());
+        }
 
         private void evaluatePolymer(int currentIndex)
         {
-            if(Result.Length > 0)
+            if (Result.Length > 0)
             {
-                if (char.IsLower(input[currentIndex]))
+                if (this.isPolarUnit(currentIndex))
                 {
-                    if (char.IsUpper(Result[Result.Length-1]))
-                    {
-                        if(char.ToUpper(input[currentIndex]) == Result[Result.Length - 1])
-                        {
-                            Result.Remove(Result.Length - 1, 1);
-                        }
-                        else
-                        {
-                            Result.Append(input[currentIndex]);
-                        }
-                    }
-                    else
-                    {
-                        Result.Append(input[currentIndex]);
-                    }
+                    Result.Remove(Result.Length - 1, 1);
                 }
-                if (char.IsUpper(input[currentIndex]))
+                else
                 {
-                    if (char.IsLower(Result[Result.Length - 1]))
-                    {
-                        if(char.ToLower(input[currentIndex])== Result[Result.Length - 1])
-                        {
-                            Result.Remove(Result.Length - 1, 1);
-                        }
-                        else
-                        {
-                            Result.Append(input[currentIndex]);
-                        }
-                    }
-                    else
-                    {
-                        Result.Append(input[currentIndex]);
-                    }
+                    Result.Append(input[currentIndex]);
                 }
             }
             else
@@ -73,22 +69,32 @@ namespace AoC2018.Day5
             }
         }
 
-        private string createNeighbours(int currentIndex)
+        private bool isPolarUnit(int currentIndex)
         {
-            StringBuilder newString = new StringBuilder();
-            if(currentIndex > 0)
+            if (Math.Abs(input[currentIndex] - Result[Result.Length - 1]) == 32) { return true; } else { return false; }
+        }
+
+        private void removeUnitFromPolymer(char unit)
+        {
+            for (int i = 0; i < this.input.Length; i++)
             {
-                if(this.Result.Length > 0)
+                if (char.ToLower(unit) != char.ToLower(this.input[i]))
                 {
-                    newString.Append(this.Result[this.Result.Length - 1]);
+                    inputWithoutUnit.Append(this.input[i]);
                 }
             }
-            newString.Append(input[currentIndex]);
-            if(currentIndex < this.input.Length - 1)
+            this.input = this.inputWithoutUnit.ToString();
+        }
+
+        private void checkUsedUnits()
+        {
+            for (int i = 0; i < this.input.Length; i++)
             {
-                newString.Append(this.input[currentIndex + 1]);
+                if (!listOfUsedUnits.Contains(char.ToLower(this.input[i])))
+                {
+                    listOfUsedUnits.Add(char.ToLower(this.input[i]));
+                }
             }
-            return newString.ToString();
         }
     }
 }
